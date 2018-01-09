@@ -19,6 +19,9 @@ app.on( "window-all-closed", () => {
 app.on( "ready", function() {
     mainWindow = new BrowserWindow( { width: 800, height: 600, show: false } );
     mainWindow.loadURL( `file://${ __dirname }/index.html` );
+    if ( isDev ) {
+        mainWindow.webContents.openDevTools();
+    }
     mainWindow.once( "ready-to-show", () => {
         mainWindow.show();
     } );
