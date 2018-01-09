@@ -2,6 +2,7 @@ const electron = require( "electron" );
 const path = require( "path" );
 const reload = require( "electron-reload" );
 const isDev = require( "electron-is-dev" );
+const menus = require( "./menus" );
 const { app, BrowserWindow, ipcMain, dialog } = electron;
 
 let mainWindow = null;
@@ -29,6 +30,7 @@ app.on( "ready", function() {
     mainWindow.on( "closed", () => {
         mainWindow = null;
     } );
+    menus.buildMenu();
 } );
 
 ipcMain.on( "show-dialog", ( e, arg ) => {
