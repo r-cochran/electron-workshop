@@ -2,7 +2,8 @@ const electron = require( "electron" );
 const path = require( "path" );
 const reload = require( "electron-reload" );
 const isDev = require( "electron-is-dev" );
-const { app, BrowserWindow } = electron;
+const { app, BrowserWindow, ipcMain, dialog } = electron;
+
 let mainWindow = null;
 
 if ( isDev ) {
@@ -28,4 +29,14 @@ app.on( "ready", function() {
     mainWindow.on( "closed", () => {
         mainWindow = null;
     } );
+} );
+
+ipcMain.on( "show-dialog", ( e, arg ) => {
+    const msgInfo = {
+        title: "My App Alert",
+        message: arg.message,
+        buttons: [ "OK" ]
+    };
+    dialog.showMessageBox( msgInfo );
+    e.sender.send( "dialog-displayed", { message: "showed it" } );
 } );
