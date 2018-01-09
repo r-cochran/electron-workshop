@@ -38,5 +38,5 @@ ipcMain.on( "show-dialog", ( e, arg ) => {
         buttons: [ "OK" ]
     };
     dialog.showMessageBox( msgInfo );
-    e.sender.send( "dialog-displayed", { message: "showed it" } );
+    e.returnValue = "banana";
 } );

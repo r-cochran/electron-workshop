@@ -14,9 +14,7 @@ document.addEventListener( "DOMContentLoaded", () => {
     const btn = document.getElementById( "clickme" );
     btn.addEventListener( "click", e => {
         console.log( "I was clicked." );
-        ipcRenderer.send( "show-dialog", { message: "The button was clicked" } );
-        ipcRenderer.on("dialog-displayed", (e, arg) => {
-            console.log("was told it opened!");
-        });
+        let responseValue = ipcRenderer.sendSync( "show-dialog", { message: "The button was clicked" } );
+        console.log("response value: " + responseValue);
     } );
 } );
