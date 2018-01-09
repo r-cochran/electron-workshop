@@ -20,7 +20,7 @@ app.on( "window-all-closed", () => {
 
 app.on( "ready", function() {
     mainWindow = new BrowserWindow( { width: 800, height: 600, show: false } );
-    mainWindow.loadURL( `file://${ __dirname }/index.html` );
+    mainWindow.loadURL( `file://${ __dirname }/dadjokes.html` );
     if ( isDev ) {
         mainWindow.webContents.openDevTools();
     }
